@@ -1,0 +1,5 @@
+sklearn
+numpy
+opencv-python
+keras
+mediapipe
