@@ -3,10 +3,10 @@ import mediapipe as mp
 import numpy as np
 from keras.models import load_model
 
-actions = ['a', 'b', 'c', 'fuck']
+actions = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
 seq_length = 30
 
-model = load_model('models/model2.keras')
+model = load_model('models/model_v1_8.keras')
 
 # mediapipe 기본 설정
 mp_hands = mp.solutions.hands
