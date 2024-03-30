@@ -4,10 +4,9 @@ import time
 import numpy as np
 import mediapipe as mp
 
-# e부터 시작
-actions = ['i']  # 원하는 동작 설정
+actions = [i for i in 'ae']  # 원하는 동작 설정
 seq_length = 30  # LSTM 때문
-secs_for_action = 50  # 학습 시간 (초)
+secs_for_action = 45  # 학습 시간 (초)
 
 # mediapipe에 있는 hands 모델
 mp_hands = mp.solutions.hands

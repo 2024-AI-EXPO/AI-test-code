@@ -50,7 +50,7 @@ history = model.fit(
     epochs=100,
     batch_size=8,
     callbacks=[
-        ModelCheckpoint(folder_path + 'testmodel/test4.keras', verbose=1, save_best_only=True, mode='auto'),
+        ModelCheckpoint(folder_path + 'testmodel/test5.keras', verbose=1, save_best_only=True, mode='auto'),
         ReduceLROnPlateau(factor=0.5, patience=50, verbose=1, mode='auto')
     ]
 )
