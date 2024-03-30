@@ -12,7 +12,7 @@ from keras.callbacks import ModelCheckpoint, ReduceLROnPlateau
 os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'
 
-actions = ['a', 'b', 'c', 'd', 'e']
+actions = ['f', 'g', 'h', 'i']
 path = 'dataset'
 data = np.concatenate([np.load(path + f'/seq_{action}.npy') for action in actions], axis=0)
 
@@ -30,7 +30,7 @@ dr = 0.3
 
 model = Sequential([
     Input(shape=x_train.shape[1:3]),
-    LSTM(64, activation='tanh', input_shape=x_train.shape[1:3], kernel_initializer=initializers),
+    LSTM(64, activation='tanh', kernel_initializer=initializers),
     Dropout(dr),
     Dense(32, activation='tanh', kernel_initializer=initializers),
     Dropout(dr),
@@ -48,15 +48,15 @@ history = model.fit(
     y_train,
     validation_data=(x_val, y_val),
     epochs=100,
-    batch_size=16,
+    batch_size=8,
     callbacks=[
-        ModelCheckpoint(folder_path + 'testmodel/num2.keras', verbose=1, save_best_only=True, mode='auto'),
+        ModelCheckpoint(folder_path + 'testmodel/test4.keras', verbose=1, save_best_only=True, mode='auto'),
         ReduceLROnPlateau(factor=0.5, patience=50, verbose=1, mode='auto')
     ]
 )
 
 # 확인 코드
-fig, loss_ax = plt.subplots(figsize=(15, 5))
+fig, loss_ax = plt.subplots(figsize=(12, 5))
 acc_ax = loss_ax.twinx()
 
 loss_ax.plot(history.history['loss'], 'y', label='train_loss')
