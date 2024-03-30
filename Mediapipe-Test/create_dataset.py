@@ -4,15 +4,16 @@ import time
 import numpy as np
 import mediapipe as mp
 
-actions = ['f', 'g', 'h', 'i']  # 원하는 동작 설정
+# e부터 시작
+actions = ['i']  # 원하는 동작 설정
 seq_length = 30  # LSTM 때문
-secs_for_action = 37.5  # 학습 시간 (초)
+secs_for_action = 50  # 학습 시간 (초)
 
 # mediapipe에 있는 hands 모델
 mp_hands = mp.solutions.hands
 mp_drawing = mp.solutions.drawing_utils
 hands = mp_hands.Hands(
-    max_num_hands=1,  # 2로 바꿀 예정
+    max_num_hands=1,  # 2로 바꿀 예정x
     min_tracking_confidence=0.5,
     min_detection_confidence=0.5
 )
@@ -100,17 +101,14 @@ while cap.isOpened():
             if cv2.waitKey(1) == ord('q'):
                 break
 
-        # 연산한 값들을 저장
-        data = np.array(data)
-        print(action, data.shape)
-        # np.save(os.path.join(file, f'raw_{action}'), data)
-
         # 시퀀스 데이터로 저장
+        data = np.array(data)
+
         full_seq_data = []
         # LSTM 시퀀스 설정 크기대로 잘라서 저장
         for seq in range(len(data) - seq_length):
             full_seq_data.append(data[seq:seq + seq_length])
         full_seq_data = np.array(full_seq_data)
-        print(full_seq_data.shape)
+        print(action, full_seq_data.shape)
         np.save(os.path.join(file, f'seq_{action}'), full_seq_data)
     break
