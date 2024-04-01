@@ -4,7 +4,11 @@ import time
 import numpy as np
 import mediapipe as mp
 
-actions = [i for i in 'ae']  # 원하는 동작 설정
+# a, e 구분은 필요할 듯 <- 일단 보류
+# g 데이터 조금 더 정확하게 수집 <- 약간 우선 시 해야 함
+# j, z 작동 잘 함
+
+actions = [i for i in ['clear', 'space']]  # 원하는 동작 설정
 seq_length = 30  # LSTM 때문
 secs_for_action = 45  # 학습 시간 (초)
 
